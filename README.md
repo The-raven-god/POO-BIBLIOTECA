@@ -1,7 +1,6 @@
-# POO-BIBLIOTECA
-# 📚 Sistema de Biblioteca - JSP + Servlets + MySQL
+# 📚 POO-BIBLIOTECA - Sistema de Gestión de Biblioteca
 
-Este proyecto es una aplicación web de gestión de biblioteca desarrollada en Java usando JSP, Servlets y MySQL como base de datos. Fue creada con **NetBeans** y ejecutada sobre **Apache Tomcat**.
+Proyecto desarrollado en Java utilizando JSP, Servlets y MySQL. Permite la gestión de libros, usuarios y préstamos en una biblioteca. Implementado en **NetBeans IDE** y desplegado con **Apache Tomcat**.
 
 ---
 
@@ -11,44 +10,48 @@ Este proyecto es una aplicación web de gestión de biblioteca desarrollada en J
 - Apache Tomcat (v9 o superior)
 - MySQL 8.0+
 - JDBC (`mysql-connector-j-8.0.31.jar`)
-- HTML/CSS
+- HTML5 / CSS3
 - NetBeans IDE
 
 ---
 
 ## 📂 Estructura del Proyecto
 
+```plaintext
 build/
 └── web/
-├── css/style.css
-├── index.jsp
-├── inicio.jsp
-├── inventario.jsp
-├── registrarLibro.jsp
-├── PrestamosActivos.jsp
-├── PrestamosRegistro.jsp
-├── usuarios.jsp
-├── navbar.jsp
-├── META-INF/
-│ ├── context.xml
-│ └── MANIFEST.MF
-└── WEB-INF/
-├── classes/
-│ ├── dao/
-│ ├── modelo/
-│ ├── servlets/
-│ └── utils/conexion.class
-├── lib/mysql-connector-j-8.0.31.jar
-└── web.xml
-
+    ├── css/style.css
+    ├── index.jsp
+    ├── inicio.jsp
+    ├── inventario.jsp
+    ├── registrarLibro.jsp
+    ├── PrestamosActivos.jsp
+    ├── PrestamosRegistro.jsp
+    ├── usuarios.jsp
+    ├── navbar.jsp
+    ├── META-INF/
+    │   ├── context.xml
+    │   └── MANIFEST.MF
+    └── WEB-INF/
+        ├── classes/
+        │   ├── dao/
+        │   ├── modelo/
+        │   ├── servlets/
+        │   └── utils/
+        │       └── conexion.class
+        ├── lib/
+        │   └── mysql-connector-j-8.0.31.jar
+        └── web.xml
+```
 
 ---
 
-## 🛠️ Configuración e Instalación
+## ⚙️ Configuración e Instalación
 
 ### 1. Clonar o Abrir el Proyecto
 
-Abre NetBeans y selecciona `Archivo > Abrir Proyecto`, luego elige la carpeta raíz del proyecto.
+- Abre NetBeans y selecciona: `Archivo > Abrir Proyecto`.
+- Navega a la carpeta raíz del proyecto y selecciónala.
 
 ---
 
@@ -57,61 +60,76 @@ Abre NetBeans y selecciona `Archivo > Abrir Proyecto`, luego elige la carpeta ra
 1. Crear la base de datos:
 
 ```sql
-CREATE DATABASE biblioteca;```
-### mportar el archivo biblioteca.sql
+CREATE DATABASE biblioteca;
+```
+
+2. Importar el archivo SQL:
+
+```bash
 mysql -u TU_USUARIO -p biblioteca < biblioteca.sql
+```
 
-Configurar la Conexión JDBC
-Revisa el archivo conexion.class en utils/ y asegúrate de que contiene algo como esto:
+---
 
-java
-Copiar
-Editar
+### 3. Configurar la Conexión JDBC
+
+Edita el archivo `conexion.class` dentro de la carpeta `utils/` para que contenga lo siguiente:
+
+```java
 String url = "jdbc:mysql://localhost:3306/biblioteca";
 String user = "root";
 String password = "";
+```
 
- Agregar el Conector MySQL
-Asegúrate de que mysql-connector-j-8.0.31.jar esté en la carpeta WEB-INF/lib.
+> Asegúrate de que el usuario y contraseña coincidan con los de tu servidor MySQL.
 
-Si NetBeans no lo detecta:
+---
 
-Click derecho en el proyecto > Propiedades > Bibliotecas > Agregar JAR/Carpeta.
+### 4. Agregar el Conector MySQL
 
-5. Configurar y Ejecutar con Tomcat
-En NetBeans, ir a Servicios > Servidores.
+- Asegúrate de que el archivo `mysql-connector-j-8.0.31.jar` esté dentro de `WEB-INF/lib`.
+- Si NetBeans no lo reconoce:
+  - Click derecho sobre el proyecto > `Propiedades > Bibliotecas > Agregar JAR/Carpeta` > Selecciona el conector.
 
-Agrega tu instalación de Apache Tomcat.
+---
 
-Click derecho sobre el proyecto > Propiedades > Ejecutar.
+### 5. Configurar Tomcat
 
-Selecciona Tomcat como servidor y asegúrate que el contexto base sea /.
+1. Ve a `Servicios > Servidores` en NetBeans.
+2. Agrega tu instalación de **Apache Tomcat**.
+3. Click derecho sobre el proyecto > `Propiedades > Ejecutar`.
+4. Selecciona Tomcat como servidor y asegúrate que el contexto sea `/`.
 
-Ejecutar el Proyecto
-Click derecho en el proyecto > Limpiar y construir.
+---
 
-Luego haz click en Ejecutar.
+### 6. Ejecutar el Proyecto
 
-El navegador debería abrir http://localhost:8080/.
+1. Click derecho sobre el proyecto > `Limpiar y construir`.
+2. Luego haz click en `Ejecutar`.
+3. Se abrirá en el navegador: `http://localhost:8080/`.
 
-🧪 Acceso de Prueba
-Puedes ingresar usando usuarios precargados en la base de datos. Ejemplo:
+---
 
-Correo: santi@gmail.com
+## 🧪 Acceso de Prueba
 
-Contraseña: 1234
+Puedes ingresar usando los siguientes datos de prueba precargados:
 
-🔑 Funcionalidades del Sistema
-📖 Registro y visualización de libros
+- **Correo:** `santi@gmail.com`
+- **Contraseña:** `1234`
 
-🔁 Gestión de préstamos (activos y devueltos)
+---
 
-👤 Gestión de usuarios (registro, login)
+## 🔑 Funcionalidades del Sistema
 
-🧾 Historial de préstamos
+- 📖 Registro y visualización de libros.
+- 🔁 Gestión de préstamos (activos y devueltos).
+- 👤 Gestión de usuarios (registro, login).
+- 🧾 Historial de préstamos por usuario.
+- 📉 Control de disponibilidad de libros y aplicación de multas.
 
-📉 Control de disponibilidad y multas
+---
 
-👨‍💻 Autor
-Santiago Rueda Quintero
-Eliecer Guevara Fuentes
+## 👨‍💻 Autores
+
+- Santiago Rueda Quintero  
+- Eliecer Guevara Fuentes
